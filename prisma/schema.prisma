@@ -28,5 +28,21 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  trips Trip[]
+
   @@map("users")
+}
+
+model Trip {
+  id         String   @id @default(uuid())
+  title      String
+  coverImage String
+  startDate  String
+  endDate    String
+  User       User     @relation(fields: [userId], references: [id])
+  userId     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("trips")
 }
