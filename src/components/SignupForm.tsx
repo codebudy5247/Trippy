@@ -15,54 +15,40 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAction } from "@/hooks/use-action";
+import { createUser } from "@/actions/create-user";
+import toast from "react-hot-toast";
+import { RegisterSchema } from "@/actions/create-user/schema";
 
-const FormSchema = z
-  .object({
-    username: z.string().min(1, "Username is required").max(100),
-    email: z.string().min(1, "Email is required").email("Invalid email"),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have than 8 characters"),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Password do not match",
-  });
 
 const SignupForm = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    const response = await fetch("/api/user/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: values.username,
-        email: values.email,
-        password: values.password,
-      }),
-    });
-    if (response.ok) {
-      let resData = await response.json();
-      console.log(resData);
+  const { execute } = useAction(createUser, {
+    onSuccess: (data) => {
+      toast.success("Registered successfully!");
       router.push("/signin");
-    } else {
-      let errData = await response.json();
-      console.error(errData.message);
-    }
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    const payload = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    execute(payload);
   };
 
   return (
@@ -75,7 +61,7 @@ const SignupForm = () => {
           <div className="space-y-2">
             <FormField
               control={form.control}
-              name="username"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
@@ -109,23 +95,6 @@ const SignupForm = () => {
                     <Input
                       type="password"
                       placeholder="Enter your password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Re-Enter your password</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Re-Enter your password"
-                      type="password"
                       {...field}
                     />
                   </FormControl>
