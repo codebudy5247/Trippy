@@ -9,3 +9,17 @@ export const getUserByEmail = async (email: string) => {
     return null;
   }
 };
+
+// Get user trips
+export const getUserTrips = async (userId: string) => {
+  try {
+    const trips = await db.trip.findMany({
+      where: {
+        ownerId: userId,
+      },
+    });
+    return trips;
+  } catch (error) {
+    return null;
+  }
+};
