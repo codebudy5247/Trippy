@@ -40,7 +40,7 @@ function CreateTrip({ user }: Props) {
     <div>
       <Button onClick={onClickHandler} className="gap-2 items-center text-sm">
         {" "}
-        <PlusCircle size={10} /> Create new trip
+        <PlusCircle size={20} /> Create new trip
       </Button>
     </div>
   );

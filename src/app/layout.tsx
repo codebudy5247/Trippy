@@ -5,7 +5,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/auth";
 import { AuthProvider } from "@/provider/AuthProvider";
 import ToasterProvider from "../provider/ToastProvider";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/Navbar"
+import { Footer } from "@/components/Footer";
 import { getUserByEmail } from "@/lib/data";
 import { User } from "@prisma/client";
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Navbar user={userInfo} />
         <AuthProvider>{children}</AuthProvider>
+        <Footer />
         <ToasterProvider />
       </body>
     </html>
