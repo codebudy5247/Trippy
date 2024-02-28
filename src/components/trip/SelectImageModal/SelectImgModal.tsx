@@ -5,17 +5,19 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Upload, X, Search } from "lucide-react";
 import ImageList from "./ImageList";
+import { Trip } from "@prisma/client";
 
 type Props = {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  trip: Trip;
 };
 
-const SelectImgModal = ({ showModal, setShowModal }: Props) => {
+const SelectImgModal = ({ showModal, setShowModal, trip }: Props) => {
   const [value, setValue] = useState("beach");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [searchedImages,setSearchedImages] = useState<any>()
+  const [searchedImages, setSearchedImages] = useState<any>();
 
   const closeModal = () => {
     setShowModal(false);
@@ -46,8 +48,8 @@ const SelectImgModal = ({ showModal, setShowModal }: Props) => {
 
   useEffect(() => {
     const init = async () => {
-      let images = await getImages() as PixabayImageResponse
-      setSearchedImages(images.hits)
+      let images = (await getImages()) as PixabayImageResponse;
+      setSearchedImages(images.hits);
     };
     init();
   }, [value]);
@@ -98,7 +100,11 @@ const SelectImgModal = ({ showModal, setShowModal }: Props) => {
             </form>
           </div>
           <ScrollArea className="h-[200px] w-full rounded-md border p-1 mt-2">
-            <ImageList ImageListData={searchedImages} />
+            <ImageList
+              ImageListData={searchedImages}
+              tripID={trip.id}
+              setShowModal={setShowModal}
+            />
           </ScrollArea>
         </div>
       </DialogContent>

@@ -5,6 +5,7 @@ import { ChevronLeft } from "lucide-react";
 import { Trip } from "@prisma/client";
 import Image from "next/image";
 import SelectImgModal from "./SelectImageModal/SelectImgModal";
+import { Button } from "../ui/button";
 
 type Props = {
   trip: Trip;
@@ -17,7 +18,10 @@ const UpdateTripForm = ({ trip }: Props) => {
   return (
     <>
       <div className="mt-2">
-        <div onClick={() => router.push("/trip")} className="cursor-pointer">
+        <div
+          onClick={() => router.push("/trip")}
+          className="cursor-pointer mb-2"
+        >
           <ChevronLeft size={20} color="grey" />
         </div>
 
@@ -32,18 +36,33 @@ const UpdateTripForm = ({ trip }: Props) => {
               </h1>
             </div>
           ) : (
-            <div className="relative flex h-60 overflow-hidden">
-              <Image
-                src={trip.coverImage}
-                alt="_image"
-                width={400}
-                height={300}
-              />
-            </div>
+            <>
+              <div className="relative">
+                <Button
+                  onClick={() => setShowModal(true)}
+                  variant="outline"
+                  className="mt-2 absolute bottom-0"
+                >
+                  Update Image
+                </Button>
+                <div className="flex h-60 overflow-hidden">
+                  <Image
+                    src={trip.coverImage}
+                    alt="_image"
+                    width={400}
+                    height={300}
+                  />
+                </div>
+              </div>
+            </>
           )}
         </div>
       </div>
-      <SelectImgModal showModal={showModal} setShowModal={setShowModal} />
+      <SelectImgModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        trip={trip}
+      />
     </>
   );
 };

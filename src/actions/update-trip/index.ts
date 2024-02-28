@@ -5,8 +5,8 @@ import { handleError } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { UpdateTripInput } from "./schema";
 
-export async function updateTrip(data: UpdateTripInput, tripId: string) {
-  if (!tripId) {
+export async function updateTrip(data: UpdateTripInput) {
+  if (!data.tripId) {
     return {
       error: "Trip Not found!",
     };
@@ -15,11 +15,17 @@ export async function updateTrip(data: UpdateTripInput, tripId: string) {
   try {
     updatedTrip = await db.trip.update({
       where: {
-        id: tripId,
+        id: data.tripId,
       },
-      data: data,
+      data: {
+        title: data.title,
+        coverImage: data.coverImage,
+        startDate: data.startDate,
+        endDate: data.endDate,
+      },
     });
   } catch (error) {
+    console.log(error);
     handleError(error);
   }
   revalidatePath(`/trip/${updatedTrip?.id}`);
