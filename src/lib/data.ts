@@ -23,3 +23,17 @@ export const getUserTrips = async (userId: string) => {
     return null;
   }
 };
+
+// Get trip by ID
+export const getTrip = async (tripId: string) => {
+  try {
+    const trip = await db.trip.findFirstOrThrow({
+      where: {
+        id: tripId,
+      },
+    });
+    return trip;
+  } catch (error) {
+    return null;
+  }
+};
