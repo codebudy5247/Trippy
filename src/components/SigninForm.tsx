@@ -57,7 +57,7 @@ const SigninForm = () => {
         setError("invalid email or password");
       } else {
         toast.success("successfully logged in!");
-        router.push("/trip");
+        router.push(callbackUrl);
       }
     } catch (error: any) {
       setLoading(false);
