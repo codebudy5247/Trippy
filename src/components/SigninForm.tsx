@@ -46,7 +46,7 @@ const SigninForm = () => {
     try {
       setLoading(true);
       const signInData = await signIn("credentials", {
-        redirect: false,
+        // redirect: false,
         email: values.email,
         password: values.password,
         redirectTo: "/trip",
