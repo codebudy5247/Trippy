@@ -14,7 +14,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter,useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -31,6 +31,9 @@ const SigninForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/trip';
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -46,6 +49,7 @@ const SigninForm = () => {
         redirect: false,
         email: values.email,
         password: values.password,
+        redirectTo: callbackUrl,
       });
       setLoading(false);
       if (signInData?.error) {
@@ -53,7 +57,7 @@ const SigninForm = () => {
         setError("invalid email or password");
       } else {
         toast.success("successfully logged in!");
-        router.push("/");
+        router.push("/trip");
       }
     } catch (error: any) {
       setLoading(false);
