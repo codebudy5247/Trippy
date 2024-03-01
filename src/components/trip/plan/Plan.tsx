@@ -1,6 +1,7 @@
 import { Trip } from "@prisma/client";
 import React from "react";
 import UpdateTripForm from "./UpdateTripForm";
+import MapBox from "./MapBox";
 
 type Props = {
   trip: Trip;
@@ -12,7 +13,9 @@ const Plan = ({ trip }: Props) => {
       <div>
         <UpdateTripForm trip={trip} />
       </div>
-      <div></div>
+      <div className="h-full">
+        <MapBox />
+      </div>
     </div>
   );
 };

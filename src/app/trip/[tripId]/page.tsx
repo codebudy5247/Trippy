@@ -15,12 +15,12 @@ const TripIdPage = async ({ params }: TripIdPageProps) => {
   const trip = (await getTrip(params.tripId)) as Trip;
   return (
     <div className="mx-5 my-10 p-5">
-      <div className="flex items-center">
+      {/* <div className="flex items-center">
         <BackButton />
         <UpdateDateTitle trip={trip} />
-      </div>
+      </div> */}
 
-      <div className="mt-2">
+      {/* <div className="mt-1">
         <Tabs defaultValue="plan" className="w-full h-screen">
           <TabsList>
             <TabsTrigger value="plan">Plan</TabsTrigger>
@@ -33,7 +33,8 @@ const TripIdPage = async ({ params }: TripIdPageProps) => {
           <TabsContent value="notes">Notes.</TabsContent>
           <TabsContent value="files">Files.</TabsContent>
         </Tabs>
-      </div>
+      </div> */}
+      <Plan trip={trip} />
     </div>
   );
 };
