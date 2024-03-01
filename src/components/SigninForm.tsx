@@ -31,8 +31,8 @@ const SigninForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/trip';
+  // const searchParams = useSearchParams();
+  // const callbackUrl = searchParams.get('callbackUrl') || '/trip';
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -49,7 +49,7 @@ const SigninForm = () => {
         redirect: false,
         email: values.email,
         password: values.password,
-        redirectTo: callbackUrl,
+        redirectTo: "/trip",
       });
       setLoading(false);
       if (signInData?.error) {
@@ -57,7 +57,7 @@ const SigninForm = () => {
         setError("invalid email or password");
       } else {
         toast.success("successfully logged in!");
-        router.push(callbackUrl);
+        router.push("/trip");
       }
     } catch (error: any) {
       setLoading(false);
