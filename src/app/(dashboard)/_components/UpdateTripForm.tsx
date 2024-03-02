@@ -14,8 +14,8 @@ const UpdateTripForm = ({ trip }: Props) => {
 
   return (
     <>
-      <div className="mt-2">
-        <div className="h-full w-full mt-2 ">
+      <div>
+        <div className="h-full w-full">
           {trip.coverImage === "" ? (
             <div
               onClick={() => setShowModal(true)}

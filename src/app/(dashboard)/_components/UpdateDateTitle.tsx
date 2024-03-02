@@ -99,6 +99,7 @@ const UpdateDateTitle = ({ trip }: Props) => {
           id="title"
           onChange={handleOnChangeTitle}
           defaultValue={trip.title}
+          placeholder="Name Your Trip"
           type="text"
           autoComplete="off"
           className={`

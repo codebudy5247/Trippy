@@ -5,6 +5,7 @@ import BackButton from "@/app/(dashboard)/_components/BackButton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Plan from "@/app/(dashboard)/_components/Plan";
 import UpdateDateTitle from "@/app/(dashboard)/_components/UpdateDateTitle";
+import Header from "../../_components/Header";
 
 interface TripIdPageProps {
   params: {
@@ -15,14 +16,10 @@ const TripIdPage = async ({ params }: TripIdPageProps) => {
   const trip = (await getTrip(params.tripId)) as Trip;
   return (
     <div>
-      {/* <div className="flex items-center">
-        <BackButton />
-        <UpdateDateTitle trip={trip} />
-      </div> */}
-
-      {/* <div className="mt-1">
+      <Header trip={trip}  />
+      <div className="mx-5 py-2">
         <Tabs defaultValue="plan" className="w-full h-screen">
-          <TabsList>
+          <TabsList className="w-full">
             <TabsTrigger value="plan">Plan</TabsTrigger>
             <TabsTrigger value="notes">Notes</TabsTrigger>
             <TabsTrigger value="files">Files</TabsTrigger>
@@ -33,8 +30,7 @@ const TripIdPage = async ({ params }: TripIdPageProps) => {
           <TabsContent value="notes">Notes.</TabsContent>
           <TabsContent value="files">Files.</TabsContent>
         </Tabs>
-      </div> */}
-      <Plan trip={trip} />
+      </div>
     </div>
   );
 };
