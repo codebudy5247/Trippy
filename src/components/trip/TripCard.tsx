@@ -35,7 +35,7 @@ function TripCard({ trip }: Props) {
             "
               src={
                 trip?.coverImage ||
-                "https://pixabay.com/get/ga2cca282ba3b60117efb06be2dbcb5f802f15ec25a38f4e9ded3e5ad966082b18a0a1f9711268af8079a05d17132fe21_1280.jpg"
+                "/default.jpg"
               }
               alt="_image"
             />

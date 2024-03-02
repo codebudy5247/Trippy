@@ -21,7 +21,7 @@ const MapBox = () => {
       accessToken: "pk.eyJ1IjoiYWRpNTI0NyIsImEiOiJjbHQ4a2s1ZzUwbjlmMmxtN2VrNHBscjB5In0.DOGmHchr_G7dLMBRvm4yfw",
       style: "mapbox://styles/mapbox/streets-v12",
       center: [72.8263, 19.0975], // Longitude, Latitude
-      zoom: 3,
+      zoom: 1,
     });
 
     setMap(mapboxMap);
@@ -30,7 +30,7 @@ const MapBox = () => {
       mapboxMap.remove();
     };
   }, []);
-  return <div ref={mapNode} style={{ width: "100%", height: "190%" }} />;
+  return <div ref={mapNode} style={{ width: "100%", height: "80%" }} />;
 };
 
 export default MapBox;

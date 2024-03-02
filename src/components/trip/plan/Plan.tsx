@@ -9,7 +9,7 @@ type Props = {
 
 const Plan = ({ trip }: Props) => {
   return (
-    <div className="grid md:grid-cols-[3fr_3fr]">
+    <div className="grid md:grid-cols-[3fr_3fr] h-screen">
       <div>
         <UpdateTripForm trip={trip} />
       </div>

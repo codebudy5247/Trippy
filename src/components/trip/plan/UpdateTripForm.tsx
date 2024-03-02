@@ -19,7 +19,7 @@ const UpdateTripForm = ({ trip }: Props) => {
           {trip.coverImage === "" ? (
             <div
               onClick={() => setShowModal(true)}
-              className="bg-gray-300 py-10 rounded-lg mt-2 cursor-pointer"
+              className="bg-gray-300 py-10 rounded-lg mt-2 cursor-pointer w-2/3"
             >
               <h1 className="text-gray-800 text-sm text-center">
                 Add a trip photo
