@@ -14,7 +14,7 @@ function TripCard({ trip }: Props) {
   return (
     <div className="col-span-2 group rounded-lg border border-gray-100 bg-white shadow-md">
       <div className="flex flex-col gap-2 w-full">
-        <Link href={`/trip/${trip.id}`}>
+        <Link href={`/planner/${trip.id}`}>
           <div
             className="
             aspect-square 

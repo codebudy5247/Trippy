@@ -15,7 +15,7 @@ import { Trip } from "@prisma/client";
 import { useDebounce } from "@/hooks/use-debounce";
 import toast from "react-hot-toast";
 import { updateTrip } from "@/actions/update-trip";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 
 type Props = {
   trip: Trip;

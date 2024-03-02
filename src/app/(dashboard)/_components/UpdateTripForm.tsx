@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Trip } from "@prisma/client";
 import Image from "next/image";
 import SelectImgModal from "./SelectImageModal/SelectImgModal";
-import { Button } from "../../ui/button";
+import { Button } from "../../../components/ui/button";
 
 type Props = {
   trip: Trip;

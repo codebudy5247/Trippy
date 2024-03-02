@@ -30,7 +30,7 @@ const MapBox = () => {
       mapboxMap.remove();
     };
   }, []);
-  return <div ref={mapNode} style={{ width: "100%", height: "80%" }} />;
+  return <div ref={mapNode} style={{ width: "100%", height: "100%" }} />;
 };
 
 export default MapBox;

@@ -26,6 +26,6 @@ export async function createTrip(data: CreateTripInput) {
   } catch (error) {
     handleError(error);
   }
-  revalidatePath(`/trip/${newTrip?.id}`);
+  revalidatePath(`/planner/${newTrip?.id}`);
   return { data: newTrip }
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import { getTrip } from "@/lib/data";
 import { Trip } from "@prisma/client";
-import BackButton from "@/components/trip/BackButton";
+import BackButton from "@/app/(dashboard)/_components/BackButton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Plan from "@/components/trip/plan/Plan";
-import UpdateDateTitle from "@/components/trip/UpdateDateTitle";
+import Plan from "@/app/(dashboard)/_components/Plan";
+import UpdateDateTitle from "@/app/(dashboard)/_components/UpdateDateTitle";
 
 interface TripIdPageProps {
   params: {
@@ -14,7 +14,7 @@ interface TripIdPageProps {
 const TripIdPage = async ({ params }: TripIdPageProps) => {
   const trip = (await getTrip(params.tripId)) as Trip;
   return (
-    <div className="mx-5 my-10 p-5">
+    <div>
       {/* <div className="flex items-center">
         <BackButton />
         <UpdateDateTitle trip={trip} />

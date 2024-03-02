@@ -28,6 +28,6 @@ export async function updateTrip(data: UpdateTripInput) {
     console.log(error);
     handleError(error);
   }
-  revalidatePath(`/trip/${updatedTrip?.id}`);
+  revalidatePath(`/planner/${updatedTrip?.id}`);
   return { data: updatedTrip };
 }
